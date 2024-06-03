@@ -1,0 +1,9 @@
+HARDWARE
+ - Inserimento dell'immagine in una specifica cartella script python
+ - Problema di reset della scheda arduino ad ogni collegamento seriale
+ 
+SOFTWARE
+ - Fare delle immagini con la esp32 cam per trainare alex
+ - Per ogni campione ci servono almeno 10 foto -> 70% training e 30% testing
+ - Vedere come comunicare con gli script python
+ - Testare alexnet
