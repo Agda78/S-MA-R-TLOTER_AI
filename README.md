@@ -8,3 +8,5 @@ Arduino
 
 Python
  - è necessario installare la libreria pyserial tramite il comando 'pip install pyserial'
+ 
+ blyat
