@@ -5,8 +5,10 @@
 
 %---------> INSERIRE CODICE <---------%
 
-random_image_download
-image_path = 'C:\Users\HP\Documents\Prova\S-MA-R-TLOTER_AI\MATLAB\Immagini\giggino.jpg';
+%random_image_download
+image_path = 'C:\Users\HP\Documents\Prova\S-MA-R-TLOTER_AI\MATLAB\Immagini\giggino.jpg'
+
+
 %---------> INSERIMENTO DEL MODELLO <---------%
 % In tale caso utilizzo in maniera assoluta alexnet
 net = alexnet;
