@@ -1,0 +1,32 @@
+PIANO A: Sistema ad azionamento con ultrasuoni
+
+1. Board Manager Servo - Ultrasuoni:
+	La board provvede a visionare il sistema in maniera continua tramite l'ultrasuoni
+	se questo noto una "Presenza" di qualunque tipo di oggetto, allora passa allo stato 2
+	invia un messaggio ben strutturato al server python in ascolto sul PC centrale
+	poi si mette in attesa dei comandi per il servomotore, una volta ricevuti ed attuati
+	torna allo stato iniziale di ascolto sull'ultrasuoni
+	
+2. ESP-32 CAM:
+	La board, attende una richiesta dal sistema centrale per effettuare una foto
+	la foto viene poi inviata al sistema centrale e ritorna ad essere in attesa
+	
+3. Sistema python:
+	Processo A: Inizia e si inserisce in ascolto sulla porta per eventuali segnalazioni
+	dalla board con l'ultasuoni. Una volta ricevuta tale informazione, richiede la foto
+	alla ESP-32 CAM e la inserisce in una specifica directory.
+	
+	Processo B: Il processo B provvede a ricevere in ingresso il risultato del matlab
+	tramite le sue args, e tramite tali informazioni, va a dare un segnale alla Board che gestisce
+	il servo per fargli attuare i risultati dell'analisi
+
+4. Sistema Matlab:
+	Carica la rete trainata, ed inizializza eventuali variabili di sistema
+	poi prosegue eseguendo il seguente loop
+	LOOP:
+		Avvia il processo A
+		Analizza l'immagine gettata
+		Ricava l'informazione desiderata
+		Avvia il processo B, dandogli in ingresso tale informazione
+		Ricomincia dal processo A
+	END LOOP

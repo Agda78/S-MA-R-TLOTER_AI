@@ -1,0 +1,27 @@
+PIANO B: Sistema sequenziale
+
+1. Board Manager Servo:
+	La board rimane in attesa di informazioni dal server centrale
+	
+2. ESP-32 CAM:
+	La board invia ogni TOT secondi un immagine al sistema centrale
+	
+3. Sistema python:
+	Processo A: Il processo A gestisce l'arrivo delle foto da parte dell'ESP-32 CAM
+	e memorizza tali foto in una cartella specifica
+	
+	Processo B: Il processo B va ad analizzare l'informazione gettata dal matlab
+	negli args per poi andare a dare un forzamento al servo
+
+4. Sistema Matlab:
+	Carica la rete trainata, ed inizializza eventuali variabili di sistema
+	poi prosegue eseguendo il seguente loop
+	LOOP:
+		Analizza la foto nella cartella
+		Getta il risultato
+		Se è "valido" lo passa al Processo B
+		altrimenti attende TOT secondi e poi ricicla
+	END LOOP
+	
+	* Nota: si potrebbe vedere se matlab effettua controlli di cambiamento
+	* dei file

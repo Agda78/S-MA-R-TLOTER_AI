@@ -1,6 +1,8 @@
 HARDWARE
  - Inserimento dell'immagine in una specifica cartella script python
  - Problema di reset della scheda arduino ad ogni collegamento seriale
+ - Inseriti dei file con struttura delle funzioni ed eventuali output attesi,
+	Visionare la cartella Python\python_interface
  
 SOFTWARE
  - Fare delle immagini con la esp32 cam per trainare alex
