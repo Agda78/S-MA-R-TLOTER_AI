@@ -28,5 +28,4 @@ PIANO A: Sistema ad azionamento con ultrasuoni
 		Analizza l'immagine gettata
 		Ricava l'informazione desiderata
 		Avvia il processo B, dandogli in ingresso tale informazione
-		Ricomincia dal processo A
 	END LOOP
