@@ -11,7 +11,7 @@ image_name = "/Carlo.jpg"
 
 
 # Dati di comunicazione con la scheda
-porto_attesa_ultrasuoni = 8080
+porto_attesa_ultrasuoni = 5000
 porto_comunicazione_cam = 4545
 
 

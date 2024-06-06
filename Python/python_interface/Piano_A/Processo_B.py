@@ -10,5 +10,6 @@ port_servo_comunication = 8080
 
 # Informazione passata dal MATLAB
 information = sys.argv[1]
-
+print("[Servo Client] Informazione ottenuta: " + information)
 # Invio dell'informazione al servo
+print("[Servo Client] Forzatura inviata al servo")
