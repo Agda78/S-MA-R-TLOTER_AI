@@ -1,9 +1,9 @@
 % -----> INFO GENERALI <----- %
 % Percorso del dataset
-datasetPath = 'C:\Users\HP\Documents\Prova\S-MA-R-TLOTER_AI\MATLAB\Train';
+datasetPath = 'C:\Users\HP\Documents\Progetto_TIAI\Dataset\Garbage classification';
 
 % Nome del file in cui sarà salvata la nuova rete
-nome_nuova_rete = "newBinnet.mat";
+nome_nuova_rete = "Man1.mat";
 
 % -----> DATASET <----- %
 % Crea un oggetto imageDatastore
