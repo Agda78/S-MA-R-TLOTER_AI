@@ -36,8 +36,8 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char *ssid = "TIM-45442572";
-const char *password = "fdDEA6XGFZxttkH93xH9cd4U";
+const char *ssid = "";
+const char *password = "";
 const char *home_server_ip = "*********";
 
 void startCameraServer();
