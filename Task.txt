@@ -1,11 +1,23 @@
-HARDWARE
- - Inserimento dell'immagine in una specifica cartella script python
- - Problema di reset della scheda arduino ad ogni collegamento seriale
- - Inseriti dei file con struttura delle funzioni ed eventuali output attesi,
-	Visionare la cartella Python\python_interface
+ARDUINO
+ - Esp32-CAM in attesa e python richiede foto
+ - Esp32-Servo deve fare:
+	1. Deve prelevare dati dall'ultrasuoni
+	2. Deve, nel caso rilevi lunghezze minori, avvisare il server in attesa
+	3. Python Processo_A contatta l'ESP32-CAM e preleva la foto
+	4. Processo_B -> servo
+ - Sistema automatico di rilevamento fumo
  
-SOFTWARE
+PIANO OPERATIVO
+	1. Rilevamento e CAM 
+	 - ESP32-CAM come server
+	 - Processo_A come client per l'ESP32-CAM
+	 - Processo_A come server per l'ESP32-servo (Ultrasuoni)
+ 
+	2. Comunicazione dei forzamenti
+	 - Python che comunica con la ESP32-servo
+	 
+	Creare tanti programmi che fanno una singola cosa
+	e poi cercarli di unirli, sincronizzando le funzioni
+ 
+MATLAB
  - Fare delle immagini con la esp32 cam per trainare alex
- - Per ogni campione ci servono almeno 10 foto -> 70% training e 30% testing
- - Vedere come comunicare con gli script python
- - Testare alexnet
