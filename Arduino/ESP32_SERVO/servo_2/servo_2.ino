@@ -1,3 +1,4 @@
+#include <SPI.h>
 #include <WiFi.h>
 #include "ESP32Servo.h"
 //#include <esp_system.h>
@@ -78,36 +79,18 @@ void server_servo(){
   Serial.println("debug");
   delay(100);
    if (process_b) {
-      Serial.println("processo_b connected");
-      
-      byte buffer[4];
-      int bytesRead = 0;
-      
-      while (process_b.connected() && bytesRead <4) {
-        // Verifica se ci sono dati disponibili
-        if (process_b.available()) {
-          // Leggi l'intero su 8 bit (byte)
-          buffer[bytesRead] = process_b.read();
-          bytesRead++; 
-          Serial.println("Lettura");
-        }
+    Serial.println("Process_b acquisito.");
+    while (process_b.connected()) {
+      if (process_b.available()) {
+        int incomingInt = process_b.parseInt();
+        Serial.print("Received integer: ");
+        Serial.println(incomingInt);
+        servo_rotation((uint8_t)incomingInt);
+        client.stop();
       }
-      if (bytesRead == 4) {
-        unsigned int numeroRicevuto = (buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8) | buffer[3];
-        Serial.print("Ricevuto: ");
-        Serial.println(numeroRicevuto);
-        servo_rotation(numeroRicevuto);
-        //process_b.stop();
-      }
-      else{
-      Serial.println("Errore nella ricezione dei dati");
-      }
-      server.stop();   
-   }
-   
+    }
+  }
 }
-
-
 void setup() {
   Serial.begin(115200);
   Serial.print("Connecting to ");
@@ -157,6 +140,3 @@ void loop() {
     Serial.println("Client disconnected");
     delay(1000);
   }
-
-  
-  
