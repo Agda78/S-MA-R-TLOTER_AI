@@ -1,6 +1,6 @@
 #include <WiFi.h>
 #include "ESP32Servo.h"
-
+//#include <esp_system.h>
 
 #define   SERVO_PIN   33
 #define   ECHO_PIN    26
@@ -12,16 +12,16 @@ Servo myservo;
 int pos = 90;
 
 // Configurazione della rete Wi-Fi
-const char* ssid     = "TIM-45442572";
-const char* password = "fdDEA6XGFZxttkH93xH9cd4U";
+const char* ssid     = "SmartLoter";
+const char* password = "FNS1926!";
 
 // Configurazione del server
-const char* serverIP = "192.168.1.24";  // Indirizzo IP del server
+const char* serverIP = "192.168.188.2";  // Indirizzo IP del server
 const uint16_t serverPort = 5050;       // Porta del server
-const uint16_t servo_port = 80;
+const uint16_t servo_port = 6060;
 
 WiFiClient client;
-WiFiServer server(80);
+WiFiServer server(serverPort);
 
 float rileva(){
   float duration, distance;
@@ -65,7 +65,36 @@ void servo_rotation(uint8_t dir){
   }
 }
 
-
+void server_servo(){
+  server.begin();
+  Serial.printf("Server started on port %d\n", serverPort);
+  WiFiClient process_b;
+  //do{
+    //process_b = server.available();
+  //}while(process_b == NULL);
+  while(!process_b){
+    process_b = server.available();
+  }
+  Serial.println("debug");
+  delay(100);
+   if (process_b) {
+      Serial.println("processo_b connected");
+      
+      while (process_b.connected()) {
+        // Verifica se ci sono dati disponibili
+        if (process_b.available()) {
+          // Leggi l'intero su 8 bit (byte)
+          uint8_t receivedValue = process_b.read();
+          
+          Serial.print("Received value: ");
+          Serial.println(receivedValue);
+          servo_rotation((int)receivedValue);
+          
+        }
+      }
+   }
+   server.stop();
+}
 
 
 void setup() {
@@ -80,8 +109,7 @@ void setup() {
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
-
+  Serial.println(WiFi.localIP()); 
   
   
   pinMode(ECHO_PIN, INPUT); 
@@ -102,50 +130,22 @@ void setup() {
 void loop() {
   Serial.println("InizioCIclo");
   distanza = rileva();
-  if (distanza < 10){
-    if (!client.connect(serverIP, serverPort)) {
+  if (distanza < (float)10){
+    while (!client.connect(serverIP, servo_port)) {
       Serial.println("Connection to server failed");
-      return;
+      //return;
       }
     client.write((uint8_t)1);
     Serial.println("Rilevazione comunicata");
     client.stop(); //chiusura connessione
     //attesa del comando da dare al SERVO
 
+    server_servo();
     
-    server.begin();
-    Serial.printf("Server started on port %d\n", serverPort);
-
-    
-    // Controlla se il client (processo_b) è connesso
-    WiFiClient process_b = server.available();
-  
-    if (process_b) {
-      Serial.println("processo_b connected");
-      
-      while (process_b.connected()) {
-        // Verifica se ci sono dati disponibili
-        if (process_b.available()) {
-          // Leggi l'intero su 8 bit (byte)
-          uint8_t receivedValue = process_b.read();
-          
-          Serial.print("Received value: ");
-          Serial.println(receivedValue);
-          servo_rotation((int)receivedValue);
-          
-        }
-      // Leggi l'intero su 8 bit (byte)
-      //uint8_t receivedValue = process_b.read();
-      
-      //Serial.print("Received value: ");
-      //Serial.println(receivedValue);
-      //servo_rotation((int)receivedValue);
-      }
     }
-    client.stop();
     Serial.println("Client disconnected");
-   
+    delay(1000);
   }
 
-  delay(2000);
-}
+  
+  

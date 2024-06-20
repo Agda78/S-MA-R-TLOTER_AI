@@ -6,6 +6,7 @@
 #include "soc/rtc_cntl_reg.h"  // Disable brownour problems
 #include "driver/rtc_io.h"
 #include <WiFi.h>
+#include <esp_system.h>
 
 // Pin definition for CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM     32
@@ -26,9 +27,9 @@
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
-const char* ssid = "TIM-45442572";
-const char* password = "fdDEA6XGFZxttkH93xH9cd4U";
-const char* host = "192.168.1.24"; 
+const char* ssid = "SmartLoter";
+const char* password = "FNS1926!";
+const char* host = "192.168.188.2"; 
 const int port = 5050;
 
 WiFiServer server(80);
@@ -145,5 +146,6 @@ void loop() {
   //send the actual data
   myclient.write(fb->buf, fb->len);
   myclient.stop();
-  delay(3000);
+  delay(1000);
+  esp_restart();
 }

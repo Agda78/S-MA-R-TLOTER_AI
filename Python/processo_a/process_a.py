@@ -5,7 +5,7 @@ import os
 SAVE_PATH = sys.argv[1]
 img_number = sys.argv[2] 
 process_port= 5050
-cam_ip = '192.168.1.34'
+cam_ip = '192.168.188.4'
 cam_port_send = 80
 
 
