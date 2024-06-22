@@ -1,23 +1,15 @@
-ARDUINO
- - Esp32-CAM in attesa e python richiede foto
- - Esp32-Servo deve fare:
-	1. Deve prelevare dati dall'ultrasuoni
-	2. Deve, nel caso rilevi lunghezze minori, avvisare il server in attesa
-	3. Python Processo_A contatta l'ESP32-CAM e preleva la foto
-	4. Processo_B -> servo
- - Sistema automatico di rilevamento fumo
+SCRITTURA DOCUMENTO
+ - Parte di introduzione generale R
+ - Parte Periferiche R
+ - Parte AI e MATLAB A
+ - Parte Smoke watchdog system R
+
+GRAFICI
+ - Grafico accuracy e loss della fase di training A
+ - Grafo a stati per il movimento del motore A
+ - Schema generale del progetto (com moduli) A
+	- Schema dei moduli A
+
+CODICE
+ - Eseguire puluzia sulla repository github A&R
  
-PIANO OPERATIVO
-	1. Rilevamento e CAM 
-	 - ESP32-CAM come server
-	 - Processo_A come client per l'ESP32-CAM
-	 - Processo_A come server per l'ESP32-servo (Ultrasuoni)
- 
-	2. Comunicazione dei forzamenti
-	 - Python che comunica con la ESP32-servo
-	 
-	Creare tanti programmi che fanno una singola cosa
-	e poi cercarli di unirli, sincronizzando le funzioni
- 
-MATLAB
- - Fare delle immagini con la esp32 cam per trainare alex
