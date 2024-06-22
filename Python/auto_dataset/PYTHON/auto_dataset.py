@@ -3,7 +3,7 @@ import os
 import sys
 
 HOST = '0.0.0.0'  # Ascolta su tutte le interfacce
-PORT = 1234  # Cambia questo a una porta diversa se necessario
+PORT = 7070  # Cambia questo a una porta diversa se necessario
 SAVE_PATH = sys.argv[1]
 
 def save_image(image_data, image_number):

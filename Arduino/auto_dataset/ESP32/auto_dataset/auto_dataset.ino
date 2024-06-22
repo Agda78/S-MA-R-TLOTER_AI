@@ -24,13 +24,13 @@
 #define     HREF_GPIO_NUM       23
 #define     PCLK_GPIO_NUM       22
 
-#define     TEMPOTRAFOTO        5
+#define     TEMPOTRAFOTO        4
 
 int pictureNumber;
-const char* ssid = "**********";
-const char* password = "***********";
-const char* host = "192.168.1.21"; 
-const int port = 5011;
+const char* ssid = "SmartLoter";
+const char* password = "FNS1926!";
+const char* host = "192.168.188.2"; 
+const int port = 7070;
 
 camera_config_t  camera_cfg();
 void camera_init(camera_config_t*);
@@ -132,6 +132,3 @@ camera_fb_t * take_a_pic(){
     }
     else return foto;
 }
-
-
-
