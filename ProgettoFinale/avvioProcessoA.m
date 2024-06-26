@@ -1,6 +1,6 @@
 function avvioProcessoA(process_path, image_path)
     % Costruisci il comando di sistema
-    cmd = sprintf('python %s %s', process_path, image_path);
+    cmd = sprintf('python3 %s %s', process_path, image_path);
     
     % Esegui il comando di sistema e cattura l'output
     [status, result] = system(cmd);

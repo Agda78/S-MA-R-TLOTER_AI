@@ -7,10 +7,13 @@
 #define   ECHO_PIN    26
 #define   TRIG_PIN    25
 #define   DIM         10
+#define   SMOKE_IN    32
+#define   BUZZ_OUT    14
 
 float distanza;
 Servo myservo;
 int pos = 90;
+int smoke_reading;
 
 // Configurazione della rete Wi-Fi
 const char* ssid     = "SmartLoter";
@@ -108,6 +111,8 @@ void setup() {
   
   pinMode(ECHO_PIN, INPUT); 
   pinMode(TRIG_PIN, OUTPUT);
+  pinMode(SMOKE_IN, INPUT);
+  pinMode(BUZZ_OUT, OUTPUT);
 
   //Allocazione dei timer
   ESP32PWM::allocateTimer(0);
@@ -119,24 +124,41 @@ void setup() {
   myservo.setPeriodHertz(50);
   myservo.attach(SERVO_PIN, 500, 2400);
 
+  //Warm up smoke detector
+  Serial.println("Warm-up...");
+
+  for(int i=0; i<20; i++){
+        if(i%5 == 0) Serial.println(".");
+        delay(1000);
+    }
+
 }
 
 void loop() {
-  Serial.println("InizioCIclo");
-  distanza = rileva();
-  if (distanza < (float)10){
-    while (!client.connect(serverIP, servo_port)) {
-      Serial.println("Connection to server failed");
-      //return;
-      }
-    client.write((uint8_t)1);
-    Serial.println("Rilevazione comunicata");
-    client.stop(); //chiusura connessione
-    //attesa del comando da dare al SERVO
-
-    server_servo();
-    
-    }
-    Serial.println("Client disconnected");
-    delay(1000);
+  //Serial.println("InizioCIclo");
+  smoke_reading = digitalRead(SMOKE_IN);
+  if(smoke_reading){
+      distanza = rileva();
+      if (distanza < (float)10){
+        while (!client.connect(serverIP, servo_port)) {
+          Serial.println("Connection to server failed");
+          //return;
+          }
+        client.write((uint8_t)1);
+        Serial.println("Rilevazione comunicata");
+        client.stop(); //chiusura connessione
+        //attesa del comando da dare al SERVO
+      
+        server_servo();
+        
+        }
+        Serial.println("Client disconnected");
   }
+  else{
+    Serial.println("Rilevato fumo!");
+    digitalWrite(BUZZ_OUT, HIGH);
+    delay(1000);
+    digitalWrite(BUZZ_OUT, LOW);
+  }
+  delay(1000);
+}

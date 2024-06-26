@@ -7,19 +7,19 @@ model_name = "Binnet_2.mat";
 
 model = model_path + model_name;
 
-load(model, "net");
+load(model, "trainedNet");
 
 % Location delle immagini
-image_path = ".\image\";
+image_path = "./image/";
 image_name = "munnezz.jpg";
 
 image = image_path + image_name;
 
 % Path del Processo A
-path_proc_A = ".\processo_a\process_a_2.py";
+path_proc_A = "./processo_a/process_a_2.py";
 
 % Path del Processo B
-path_proc_B = ".\processo_b\process_b.py";
+path_proc_B = "./processo_b/process_b.py";
 
 % LOOP: 
 fprintf("[MATLAB] Avvio del LOOP sistematico \n");
@@ -38,7 +38,7 @@ while true
         resizedImage = imresize(newImage, [inputSize(1) inputSize(2)]);
         
         % Classificare l'immagine
-        [label, scores] = classify(net, resizedImage);
+        [label, scores] = classify(trainedNet, resizedImage);
         
         % Impaccottamento dei risultati
         forzamento = char(label);
