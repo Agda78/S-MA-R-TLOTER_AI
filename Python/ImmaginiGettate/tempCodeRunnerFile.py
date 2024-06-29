@@ -1,1 +1,0 @@
-C:\\Users\\HP\\Documents\\Prova\\S-MA-R-TLOTER_AI\\MATLAB\\Immagini\\
