@@ -42,10 +42,11 @@ while true
         
         % Impaccottamento dei risultati
         forzamento = char(label);
+        % fprintf("forzamento inviato: %s", forzamento);
 
         % Stringa di avvio del processo B
         % con in ingresso l'informazione elaborata
-        avvioProcessoB(path_proc_B, forzamento)
+        avvioProcessoB(path_proc_B, forzamento);
     catch
         disp("[MATLAB] Loop interrotto manualmente\n");
         break; % Esci dal loop se viene generata un'eccezione

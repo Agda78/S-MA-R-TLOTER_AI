@@ -1,11 +1,11 @@
 function avvioProcessoB(path, forzamento)        
-<<<<<<< HEAD
+%<<<<<<< HEAD
     % Costruisci il comando di sistema
     cmd = sprintf('python %s %s', path, forzamento);
-=======
+%=======
         % Costruisci il comando di sistema
     cmd = sprintf('python3 %s %s', path, forzamento);
->>>>>>> 5d704893e29d226cb006dda4c7d10c69c0032c3a
+% >>>>>>> 5d704893e29d226cb006dda4c7d10c69c0032c3a
     
     % Esegui il comando di sistema e cattura l'output
     [status, result] = system(cmd);
